@@ -7,7 +7,7 @@ plugins:
   - mkdocstrings:
       default_handler: python
   - search
-  #- git-revision-date
+  - git-revision-date
 
 nav:
   - RapidGBM Intro: index.md
