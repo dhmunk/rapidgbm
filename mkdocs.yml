@@ -1,5 +1,7 @@
 site_name: RapidGBM Documentation
 
+repo_url: https://github.com/dhmunk/rapidgbm
+
 theme:
   name: "material"
 
