@@ -1,0 +1,44 @@
+[tool.poetry]
+name = "RapidGBM"
+version = "0.0.1"
+description = ""
+authors = ["Daniel Porsmose"]
+readme = "README.md"
+packages = [{include = "rapidgbm"}]
+
+[tool.poetry.dependencies]
+python = ">=3.9"
+pandas = "*"
+numpy = "*"
+lightgbm = ">=3.3.0"
+scikit-learn = ">=0.23.2"
+optuna = ">=2.10.0"
+optuna-integration = "*"
+matplotlib = "*"
+
+[tool.poetry.group.dev.dependencies]
+ipykernel = "^6.29.3"
+pytest = "*"  
+black = "*"  
+mypy = "*"
+mkdocs = "*"
+mkdocs-material = "*"
+mkdocstrings-python = "*"
+mkdocs-git-revision-date-plugin = "*"
+
+
+[tool.mypy]
+python_version = "3.10"
+plugins = "numpy.typing.mypy_plugin"
+
+[[tool.mypy.overrides]]
+module = "pandas.*"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "sklearn.*"
+ignore_missing_imports = true
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

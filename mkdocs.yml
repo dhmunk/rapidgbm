@@ -1,0 +1,18 @@
+site_name: RapidGBM Documentation
+
+theme:
+  name: "material"
+
+plugins:
+  - mkdocstrings:
+      default_handler: python
+  - search
+  #- git-revision-date
+
+nav:
+  - RapidGBM Intro: index.md
+  - Installation: installation.md
+  - Quick Start: quickstart.md
+  - Tutorials: tutorials.md
+  - API-reference: reference.md
+  - License: License.md
