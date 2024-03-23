@@ -172,6 +172,7 @@ class RapidGBMTuner(ArgValidationMixin, PlottingMixin):
             tuner.update_grid('boosting_type', ['gbdt', 'rf'])  # random search
             tuner.update_grid('learning_rate', (0.001, 0.1))  # uniform grid range between the min(tuple), max(tuple))
             tuner.update_grid('num_leaves', {'low': 0.1, 'high': 5})  # uniform grid range between the low and high values
+            tuner.update_grid('max_data_in_leaf', {'choice' : [40, 50, 70]})  # random search
             ```
         """
         if not isinstance(params, (list, tuple, dict)):
