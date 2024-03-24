@@ -15,22 +15,30 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
+
       - uses: actions/setup-python@v3
         with:
           python-version: ${{ matrix.python-version }}
+
       - name: Run image
         uses: abatilo/actions-poetry@v2.1.4
         with:
           poetry-version: ${{ matrix.poetry-version }}
-      - name: Publish to TestPyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
-        if: steps.release.outputs.released == 'true'
-        with:
-          repository-url: https://test.pypi.org/legacy/
-          password: ${{ secrets.TEST_PYPI_API_TOKEN }}
-      - name: Publish
+
+      - name: MyPy
+        run: poetry run mypy -p rapidgbm
+
+      - name: PyTest
+        run: poetry run pytest -v
+
+      - name: Publish to pypi
         env:
+          PYPI_USER: ${{ secrets.PYPI_USER }}
           PYPI_TOKEN: ${{ secrets.TEST_PYPI_API_TOKEN }}
-        run:
-          poetry config pypi-token.test-pypi $PYPI_TOKEN
-          poetry publish --build
+        run: |
+          poetry config repositories.testpypi https://test.pypi.org/legacy/
+          poetry build
+          poetry publish -r testpypi -u $PYPI_USER -p $PYPI_TOKEN
+
+          #poetry config pypi-token.pypi $PYPI_TOKEN
+          #poetry publish --build

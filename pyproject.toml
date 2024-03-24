@@ -4,6 +4,7 @@ version = "0.0.1"
 description = "RapidGBM is a powerful Python package designed to streamline the process of tuning LightGBM models using the optimization framework Optuna."
 authors = ["Daniel Porsmose"]
 readme = "README.md"
+license = "LICENSE.md"  
 packages = [
     { include = "rapidgbm" }
 ]
