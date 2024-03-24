@@ -22,15 +22,13 @@ jobs:
         uses: abatilo/actions-poetry@v2.1.4
         with:
           poetry-version: ${{ matrix.poetry-version }}
-      #- name: MyPy
-      #  run: poetry run mypy -p rapidgbm
-      #- name: PyTest
-      #  run: poetry run pytest -v
-      - name: Publish to pypi
+      - name: Publish to Pypi
         env:
-          PYPI_USER: ${{ secrets.PYPI_USER }}
-          PYPI_TOKEN: ${{ secrets.TEST_PYPI_API_TOKEN }}
+          TEST_PYPI_TOKEN: ${{ secrets.TEST_PYPI_API_TOKEN }}
+          PYPI_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
         run: |
-          poetry config repositories.testpypi https://test.pypi.org/legacy/
-          poetry config pypi-token.testpypi $PYPI_TOKEN
-          poetry publish -r testpypi --build
+          # poetry config repositories.testpypi https://test.pypi.org/legacy/
+          # poetry config pypi-token.testpypi $TEST_PYPI_TOKEN
+          # poetry publish -r testpypi --build
+          poetry config pypi-token.pypi $PYPI_TOKEN
+          poetry publish --build
