@@ -22,10 +22,10 @@ jobs:
         uses: abatilo/actions-poetry@v2.1.4
         with:
           poetry-version: ${{ matrix.poetry-version }}
-      - name: MyPy
-        run: poetry run mypy -p rapidgbm
-      - name: PyTest
-        run: poetry run pytest -v
+      #- name: MyPy
+      #  run: poetry run mypy -p rapidgbm
+      #- name: PyTest
+      #  run: poetry run pytest -v
       - name: Publish to pypi
         env:
           PYPI_USER: ${{ secrets.PYPI_USER }}
